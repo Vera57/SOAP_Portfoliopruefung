@@ -6,11 +6,13 @@
 package EJB;
 
 import JPA.Kunde;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Vera
  */
+@Stateless
 public class KundeBean extends EntityBean<Kunde,Long>{
     public KundeBean(){
         super(Kunde.class);
