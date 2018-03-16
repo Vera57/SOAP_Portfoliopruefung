@@ -5,7 +5,9 @@
  */
 package EJB;
 
+import JPA.Fahrzeug;
 import JPA.Leihvertrag;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 
@@ -21,4 +23,29 @@ public class LeihvertragBean extends EntityBean <Leihvertrag, Long> {
                 .setParameter("KundenId", KundenId)
                 .getResultList();
     }
+    
+    public List<Leihvertrag> findLeihvertragKonflikt (Fahrzeug fahrzeug, Date startDatum, Date endeDatum) {
+        return this.em.createQuery( "SELECT l FROM Leihvertrag l"
+                                    + " WHERE l.FahrzeugId = :fahrzeug AND "
+                                            + "( l.startDatum <= :startDatum AND "
+                                            + "l.endeDatum >= :startDatum"
+                                        + ") OR ("
+                                            + "l.startDatum <= :endeDatum AND "
+                                            + "l.endeDatum >= :endeDatum"
+                                        + ") OR ("
+                                            + "l.startDatum >= :startDatum AND "
+                                            + "l.endeDatum <= :endeDatum)")
+                .setParameter("startDatum", startDatum)
+                .setParameter("endeDatum", endeDatum)
+                .setParameter("fahrzeug", fahrzeug.getId())
+                .getResultList();
+    }
+    
+    public Leihvertrag saveNewLeihvertrag (Leihvertrag leihvertrag) {
+        if ()
+            em.persist(leihvertrag);
+            return em.merge(leihvertrag)
+    }
+    
+    
 }
