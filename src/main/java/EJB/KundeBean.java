@@ -5,10 +5,16 @@
  */
 package EJB;
 
+import JPA.Kunde;
+
 /**
  *
  * @author Vera
  */
-public class KundeBean {
+public class KundeBean extends EntityBean<Kunde,Long>{
+    public KundeBean(){
+        super(Kunde.class);
+    }
+    
     
 }
