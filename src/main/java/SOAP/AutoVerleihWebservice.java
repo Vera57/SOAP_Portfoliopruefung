@@ -5,10 +5,66 @@
  */
 package SOAP;
 
-/**
- *
- * @author Vera
- */
+import EJB.FahrzeugBean;
+import EJB.KundeBean;
+import EJB.LeihvertragBean;
+import JPA.Fahrzeug;
+import JPA.Kunde;
+import JPA.Leihvertrag;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
+import javax.jws.WebService;
+
+@Stateless
+@WebService
 public class AutoVerleihWebservice {
+    
+    @EJB 
+    FahrzeugBean fahrzeugBean; 
+    
+    @EJB
+    KundeBean kundeBean; 
+    
+    @EJB
+    LeihvertragBean leihvertragBean;
+    
+    public AutoVerleihWebservice (){
+    }
+    
+    @WebMethod
+    @WebResult(name="kundeRegistrieren")
+    public Kunde kundeRegistrieren (Kunde kunde){
+        return this.kundeBean.saveNew(kunde);
+    }
+    
+    @WebMethod
+    @WebResult(name="fahrzeugAnlegen")
+    public Fahrzeug fahrzeugAnlegen (Fahrzeug fahrzeug) {
+        return this.fahrzeugBean.saveNew(fahrzeug);
+    }
+    
+    @WebMethod
+    @WebResult(name="fahrzeugAusleihen")
+    public Leihvertrag fahrzeugAusleihen (Leihvertrag leihvertrag) {
+        return this.leihvertragBean.saveNew(leihvertrag);
+    }
+    
+    @WebMethod
+    @WebResult(name="fahrzeugeList")
+    public List<Fahrzeug> findAllFahrzeuge () {
+        return this.fahrzeugBean.findAll();
+    }
+    
+    @WebMethod
+    @WebResult(name="leihvertraegeList")
+    public List<Leihvertrag> findByKundenId (@WebParam(name = "KundenId") String KundenId) {
+        return this.leihvertragBean.findByKundenId(KundenId);
+    }
+    
+    
     
 }
