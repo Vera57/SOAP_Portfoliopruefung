@@ -139,11 +139,21 @@ public class Main {
         System.out.print("Vorname  : ");
         String hersteller = this.fromKeyboard.readLine();
         
-        System.out.print("Nachname : ");
+        System.out.print("Modell : ");
         String modell = this.fromKeyboard.readLine();
         
-        System.out.print("Vorname  : ");
+        System.out.print("Baujahr  : ");
         String baujahr = this.fromKeyboard.readLine();
+        
+        Fahrzeug fahrzeug = new Fahrzeug();
+        fahrzeug.setHersteller(hersteller);
+        fahrzeug.setModell(modell);
+        fahrzeug.setBaujahr(baujahr);
+        
+        Holder<Fahrzeug> hFahrzeug = new Holder<>(fahrzeug);
+        ws.fahrzeugAnlegen(fahrzeug);
+        
+        System.out.println("Fahrzeug mit der ID " + hFahrzeug.value.getId()+"wurde angelegt.");
         
         
      }
