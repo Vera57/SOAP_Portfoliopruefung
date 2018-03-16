@@ -21,7 +21,7 @@ public class Leihvertrag implements Serializable {
     @Id
     @GeneratedValue(generator = "leihvertrag_ids")
     @TableGenerator(name = "leihvertrag_ids", initialValue = 0, allocationSize = 50)
-    private long id = 0;
+    private long id = 0L;
     
     @ManyToOne
     private String KundenId = "";
