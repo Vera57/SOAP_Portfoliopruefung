@@ -11,6 +11,7 @@ import EJB.LeihvertragBean;
 import JPA.Fahrzeug;
 import JPA.Kunde;
 import JPA.Leihvertrag;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -48,9 +49,12 @@ public class AutoVerleihWebservice {
     }
     
     @WebMethod
-    @WebResult(name="fahrzeugAusleihen")
-    public Leihvertrag fahrzeugAusleihen (Leihvertrag leihvertrag) {
-        return this.leihvertragBean.saveNew(leihvertrag);
+    @WebResult(name="saveNewLeihvertrag")
+    public Leihvertrag saveNewLeihvertrag (@WebParam(name = "leihvertrag") Leihvertrag leihvertrag, 
+                                           @WebParam(name = "fahrzeug") Fahrzeug fahrzeug,
+                                           @WebParam(name = "startDatum") Date startDatum,
+                                           @WebParam(name = "endeDatum") Date endeDatum){
+        return this.leihvertragBean.saveNewLeihvertrag(leihvertrag, fahrzeug, startDatum, endeDatum );
     }
     
     @WebMethod

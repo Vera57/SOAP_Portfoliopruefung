@@ -41,13 +41,12 @@ public class LeihvertragBean extends EntityBean <Leihvertrag, Long> {
                 .getResultList();
     }
     
-    public Leihvertrag saveNewLeihvertrag (Leihvertrag leihvertrag) { 
-        
-        if (leihvertrag.findLeihvertragKonflikt.isEmpty()) {
+    public Leihvertrag saveNewLeihvertrag (Leihvertrag leihvertrag,Fahrzeug fahrzeug, Date startDatum, Date endeDatum){ 
+        Leihvertrag r =null;
+        if (this.findLeihvertragKonflikt(fahrzeug, startDatum, endeDatum).isEmpty()) {
                 em.persist(leihvertrag);
-                return em.merge(leihvertrag);
+                r = em.merge(leihvertrag);
         }
-    }
-    
-    
+        return r;
+    }    
 }
