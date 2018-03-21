@@ -24,10 +24,10 @@ public class Leihvertrag implements Serializable {
     private long id = 0L;
     
     @ManyToOne
-    private String KundenId = "";
+    private Kunde kunde;
     
     @ManyToOne
-    private String FahrzeugId = "";
+    private Fahrzeug fahrzeug;
     
     @Temporal(TemporalType.DATE)
     private Date startDatum = new Date();
@@ -39,9 +39,9 @@ public class Leihvertrag implements Serializable {
     public Leihvertrag () {
     }
     
-    public Leihvertrag (String KundenId, String FahrzeugId, Date startDatum, Date endeDatum){
-        this.KundenId = KundenId;
-        this.FahrzeugId = FahrzeugId;
+    public Leihvertrag (Kunde kunde, Fahrzeug fahrzeug, Date startDatum, Date endeDatum){
+        this.kunde = kunde;
+        this.fahrzeug = fahrzeug;
         this.startDatum = startDatum;
         this.endeDatum = endeDatum;
     }
@@ -56,20 +56,20 @@ public class Leihvertrag implements Serializable {
         this.id = id;
     }
     
-    public String getKundenId() {
-        return KundenId;
+    public Kunde getKunde() {
+        return kunde;
     }
     
-    public void setKundenId(String KundenId) {
-        this.KundenId = KundenId;
+    public void setKunde(Kunde kunde) {
+        this.kunde = kunde;
     }
     
-    public String getFahrzeugId() {
-        return FahrzeugId;
+    public Fahrzeug getFahrzeug() {
+        return fahrzeug;
     }
     
-    public void setFahrzeugId(String FahrzeugId) {
-        this.FahrzeugId = FahrzeugId;
+    public void setFahrzeug(Fahrzeug fahrzeug) {
+        this.fahrzeug = fahrzeug;
     }
     
     public Date getStartDatum() {

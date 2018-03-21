@@ -65,8 +65,8 @@ public class AutoVerleihWebservice {
     
     @WebMethod
     @WebResult(name="leihvertraegeList")
-    public List<Leihvertrag> findByKundenId (@WebParam(name = "KundenId") String KundenId) {
-        return this.leihvertragBean.findByKundenId(KundenId);
+    public List<Leihvertrag> findByKundenId (@WebParam(name = "Kunde") Kunde kunde) {
+        return this.leihvertragBean.findByKundenId(kunde);
     }
     
     
